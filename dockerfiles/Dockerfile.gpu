@@ -98,7 +98,7 @@ RUN wget https://raw.githubusercontent.com/tensorflow/docs/master/site/en/tutori
 RUN wget https://raw.githubusercontent.com/tensorflow/docs/master/site/en/tutorials/keras/save_and_load.ipynb
 RUN wget https://raw.githubusercontent.com/tensorflow/docs/master/site/en/tutorials/keras/text_classification.ipynb
 RUN wget https://raw.githubusercontent.com/tensorflow/docs/master/site/en/tutorials/keras/text_classification_with_hub.ipynb
-COPY readme-for-jupyter.md README.md
+
 RUN apt-get autoremove -y && apt-get remove -y wget
 WORKDIR /tf
 EXPOSE 8888
@@ -107,17 +107,21 @@ RUN python3 -m ipykernel.kernelspec
 
 ### Install General Packages
 
-RUN pip install six==1.12.0 \
+RUN pip install --no-cache-dir six==1.12.0 \
     pandas xlrd tqdm openpyxl \
-    fuzzywuzzy
+    fuzzywuzzy pyyaml
+
+### Install Visualization Packages
+
+RUN pip install --no-cache-dir seaborn \
+    plotly
 
 ### Install General ML Packages
 
-RUN pip install scikit-learn hyperas
+RUN pip install --no-cache-dir scikit-learn hyperas
 
 ### Install NLP Packages
 
-RUN pip install transformers sentencepiece \
+RUN pip install --no-cache-dir transformers sentencepiece \
     tensorflow_addons spacy nlp_preprocessing \
-    model-x
-    
+    model-x tensorflow-hub lda2vec
