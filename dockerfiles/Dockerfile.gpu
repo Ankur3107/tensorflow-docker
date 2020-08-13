@@ -106,13 +106,15 @@ RUN pip install --no-cache-dir scikit-learn hyperas \
 
 ### Install NLP Packages
 
-RUN pip install --no-cache-dir transformers sentencepiece \
+RUN pip install --no-cache-dir sentencepiece \
     tensorflow_addons nlp_preprocessing \
     model-x tensorflow-hub lda2vec gensim textblob wordcloud \
     flashtext
+    
+RUN pip install --no-cache-dir git+https://github.com/huggingface/transformers.git
 
 
-RUN pip install spacy[cuda100] && \
+RUN pip install --no-cache-dir spacy[cuda100] && \
     python -m spacy download en && python -m spacy download en_core_web_sm
 
 WORKDIR /tf
