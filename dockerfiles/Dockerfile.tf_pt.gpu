@@ -93,7 +93,7 @@ RUN pip install --no-cache-dir torch==1.6.0+cu101 torchvision==0.7.0+cu101 -f ht
 
 ### Install other pytorch based packages
 
-RUN pip install --no-cache-dir -e "fastai[dev]" \
+RUN pip install --no-cache-dir fastai \
         fairseq allennlp allennlp-models
         
 ### Install General Packages
